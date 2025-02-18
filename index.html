@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFF 圖片顯示</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h2>這是預設圖片</h2>
+    <img id="displayImage" src="https://your-image-url.com/sample.jpg" alt="預設圖片">
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            liff.init({ liffId: "你的LIFF ID" })
+                .then(() => console.log("LIFF 初始化成功"))
+                .catch(err => console.error("LIFF 初始化失敗", err));
+        });
+    </script>
+</body>
+</html>
