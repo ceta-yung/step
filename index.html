@@ -16,9 +16,21 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            liff.init({ liffId: "2006689082-ZQ1GmnYv" })
+            fetch("liff-config.json") // 從本地端讀取 LIFF ID
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("找不到 liff-config.json，請確認檔案是否存在。");
+                    }
+                    return response.json();
+                })
+                .then(config => {
+                    if (!config.LIFF_ID) {
+                        throw new Error("liff-config.json 中沒有找到 LIFF_ID！");
+                    }
+                    return liff.init({ liffId: config.LIFF_ID });
+                })
                 .then(() => console.log("LIFF 初始化成功"))
-                .catch(err => console.error("LIFF 初始化失敗", err));
+                .catch(err => console.error("LIFF 初始化失敗:", err));
         });
     </script>
 </body>
